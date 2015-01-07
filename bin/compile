@@ -219,6 +219,9 @@ else
   info "No Gruntfile (grunt.js, Gruntfile.js, Gruntfile.coffee) found"
 fi
 
+
+head 'installing bower deps'
+
 # install compass
 head "Installing Compass"
 export GEM_HOME=$build_dir/.gem/ruby/1.9.1
@@ -245,6 +248,11 @@ info "Building runtime environment"
 mkdir -p $build_dir/.profile.d
 echo "export PATH=\"\$HOME/vendor/node/bin:\$HOME/bin:\$HOME/node_modules/.bin:\$PATH\";" > $build_dir/.profile.d/nodejs.sh
 echo "export PATH=\"\$HOME/.gem/ruby/1.9.1/bin:\$PATH\"" > $build_dir/.profile.d/ruby.sh
+
+# install bower components
+head "Installing bower components"
+$build_dir/node_modules/bower/bin/bower --allow-root install
+
 
 # Check and run Grunt
 head "Running grunt"
